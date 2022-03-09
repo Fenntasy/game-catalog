@@ -56,4 +56,5 @@ test("Test that we have an index with an h1 and an image of a phoenix", async ()
   await click(text("Link"));
 
   expect(await currentURL()).toContain("/plop");
+  expect(false).toBe(true);
 });
