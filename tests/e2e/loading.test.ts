@@ -1,4 +1,4 @@
-import { openBrowser, goto, text, closeBrowser } from "taiko";
+import { openBrowser, goto, text, closeBrowser, click, currentURL, screenshot } from "taiko";
 import { Server } from "http";
 import { MongoClient } from "mongodb";
 import * as dotenv from "dotenv";
@@ -44,12 +44,16 @@ afterAll(async () => {
   await closeBrowser();
 });
 
-test("Test that we have an index with an h1", async () => {
-  expect.assertions(1);
+test("Test that we have an index with an h1 and an image of a phoenix", async () => {
+  expect.assertions(2);
 
   await goto("http://localhost:3030");
 
-  expect(await text("This should be changed in the first PR").exists()).toBe(
-    true
-  );
+  const myH1 = text("This should be changed in the first PR");
+
+  expect(await myH1.exists()).toBe(true);
+
+  await click(text("Link"));
+
+  expect(await currentURL()).toContain("/plop");
 });
