@@ -17,5 +17,9 @@ export function makeApp(db: Db): core.Express {
     response.render("index");
   });
 
+  app.get("/plop", (request, response) => {
+    response.send("Coucou");
+  });
+
   return app;
 }
